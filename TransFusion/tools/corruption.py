@@ -1,6 +1,8 @@
 import os
 import sys
-sys.path.append(os.path.abspath("/home/yifannus2023/3D_Corruptions_AD"))
+sys.path.append(os.path.abspath("/home/yifannus2023/3D_Corruptions"))
+sys.path.insert(0, "/home/yifannus2023/3D_Corruptions/TransFusion/mmdet3d")
+# sys.path.append('/home/yifannus2023/3D_Corruptions_AD-/utils')
 import cv2
 import numpy as np
 from torchvision.utils import save_image

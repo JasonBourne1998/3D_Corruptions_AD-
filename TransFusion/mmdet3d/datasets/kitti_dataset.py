@@ -8,10 +8,10 @@ from mmcv.utils import print_log
 from os import path as osp
 
 from mmdet.datasets import DATASETS
-from ..core import show_result
-from ..core.bbox import (Box3DMode, CameraInstance3DBoxes, Coord3DMode,
+from mmdet3d.core import show_result
+from mmdet3d.core.bbox import (Box3DMode, CameraInstance3DBoxes, Coord3DMode,
                          points_cam2img)
-from .custom_3d import Custom3DDataset
+from mmdet3d.datasets.custom_3d import Custom3DDataset
 
 
 @DATASETS.register_module()
@@ -696,3 +696,34 @@ class KittiDataset(Custom3DDataset):
                                             Box3DMode.DEPTH)
             show_result(points, gt_bboxes, pred_bboxes, out_dir, file_name,
                         show)
+
+if __name__ == "__main__":
+    # 初始化数据集参数
+    data_root = "/home/yifannus2023/3D_Corruptions_AD/TransFusion/data/kitti"  # KITTI数据集根目录
+    ann_file = os.path.join(data_root, "kitti_infos_train.pkl")  # 标注文件路径
+    split = "training"  # 数据集分割
+    pts_prefix = "velodyne"  # 点云数据前缀
+    classes = ('car', 'pedestrian', 'cyclist')
+    modality = dict(use_lidar=True, use_camera=True)  # 数据模式（LiDAR和相机）
+    box_type_3d = 'LiDAR'  # 3D框的类型
+    filter_empty_gt = True  # 过滤空GT
+    test_mode = False  # 训练模式
+
+    # 创建 KITTI 数据集实例
+    dataset = KittiDataset(
+        data_root=data_root,
+        ann_file=ann_file,
+        split=split,
+        pts_prefix=pts_prefix,
+        classes=classes,
+        modality=modality,
+        box_type_3d=box_type_3d,
+        filter_empty_gt=filter_empty_gt,
+        test_mode=test_mode
+    )
+
+    # 示例：生成第一个样本的 data_info 和 ann_info
+    sample_idx = 0  # 选择样本索引
+    data_info = dataset.get_data_info(sample_idx)  # 获取 data_info
+    ann_info = dataset.get_ann_info(sample_idx)  # 获取 ann_info
+    print(data_info)

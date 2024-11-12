@@ -1,9 +1,9 @@
 import sys
 sys.path.append('utils')
-
-
+sys.path.append('/home/yifannus2023/3D_Corruptions/utils')
+# sys.path.insert(0, "/home/yifannus2023/3D_Corruptions/TransFusion")
 import imgaug.augmenters as iaa
-import utils.weather.Automold as am
+import weather.Automold as am
 from torchvision.utils import save_image
 import torch
 import cv2
@@ -11,7 +11,7 @@ import numpy as np
 from scipy.ndimage import zoom as scizoom
 
 import torch.nn.functional as F 
-from utils.tps_grid_gen import TPSGridGen
+from tps_grid_gen import TPSGridGen
 
 #YOU NEED : pip install imagecorruptions
 
@@ -25,7 +25,6 @@ def get_gaussian_kernel(kernlen=5, nsig=3):
     kernel_raw = np.sqrt(np.outer(kern1d, kern1d))  
     kernel = kernel_raw/kernel_raw.sum()            
     return kernel
-
 
 
 from mmdet3d.core.bbox.structures.utils import points_cam2img
