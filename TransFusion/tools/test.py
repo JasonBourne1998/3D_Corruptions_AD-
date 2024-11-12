@@ -3,18 +3,22 @@ import mmcv
 import os
 import torch
 import warnings
+import sys
+import random
+print(sys.path)
 from mmcv import Config, DictAction
+print(mmcv.__file__)
 from mmcv.cnn import fuse_conv_bn
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
 from mmcv.runner import (get_dist_info, init_dist, load_checkpoint,
                          wrap_fp16_model)
 
-from mmdet3d.apis import single_gpu_test
+from mmdet3d.apis.test import single_gpu_test
 from mmdet3d.datasets import build_dataloader, build_dataset
 from mmdet3d.models import build_detector
-from mmdet.apis import multi_gpu_test, set_random_seed
+from mmdet3d.apis.test import multi_gpu_test, set_random_seed
 from mmdet.datasets import replace_ImageToTensor
-
+print("pass the import")
 
 def parse_args():
     parser = argparse.ArgumentParser(

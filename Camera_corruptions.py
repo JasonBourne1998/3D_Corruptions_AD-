@@ -3,7 +3,7 @@ sys.path.append('utils')
 
 
 import imgaug.augmenters as iaa
-import weather.Automold as am
+import utils.weather.Automold as am
 from torchvision.utils import save_image
 import torch
 import cv2
@@ -36,74 +36,63 @@ class ImagePointAddSun():
         print(self.__class__.__name__, ': please set numpy seed !')
         self.severity = severity
 
-    def __call__(self, image, points, lidar2img, watch_img=False, file_path='') -> np.array:
+    def __call__(self, image, lidar2img, watch_img=False, file_path='') -> np.array:
         """
-            image should be numpy array : H * W * 3
-            in uint8 (0~255) and RGB
-
-            points should be tensor : N * 4
-            
+        image should be numpy array : H * W * 3
+        in uint8 (0~255) and RGB
         """
         severity = self.severity
         temp_dict_trans_information = {}
 
+        # 仅应用 sun_sim_img 方法，不涉及点云
         image_aug = self.sun_sim_img(image, lidar2img, severity, watch_img, file_path, temp_dict_trans_information)
-        points_aug = self.sun_sim_point(points, lidar2img, severity, watch_img, file_path, temp_dict_trans_information)
-
-
-        return image_aug, points_aug
-    
-
+        return image_aug
 
     def sun_sim_img(self, image, lidar2img, severity, watch_img=False, file_path='', temp_dict_trans_information={}):
         sun_radius = [30, 40, 50, 60, 70][severity-1]
         
         # corruption severity-independent parameters
         no_of_flare_circles = 1
-        src_color = (255,255,255)
+        src_color = (255, 255, 255)
 
         img_width = image.shape[1]
         img_height = image.shape[0]
         sun_u_range = [0.25, 0.75]
         sun_v_range = [0.30, 0.45]
-        sun_u = np.random.uniform(*sun_u_range)*img_width
-        sun_v = np.random.uniform(*sun_v_range)*img_height
+        sun_u = np.random.uniform(*sun_u_range) * img_width
+        sun_v = np.random.uniform(*sun_v_range) * img_height
         sun_uv = np.array([sun_u, sun_v])
 
-
-        img_center_coor = np.array([image.shape[1]/2, image.shape[0]/2])
+        img_center_coor = np.array([image.shape[1] / 2, image.shape[0] / 2])
         sun_uv_to_center = img_center_coor - sun_uv
 
-        sun_flare_line_angle = np.arctan(sun_uv_to_center[1]/sun_uv_to_center[0])
+        sun_flare_line_angle = np.arctan(sun_uv_to_center[1] / sun_uv_to_center[0])
 
         image_uint8_rgb = image
-
         flare_image_rgb = image.astype(np.float64)
         mainflare_mask = np.zeros_like(image).astype(np.float64)
         try:
             flare_image_rgb, mainflare_mask = am.add_sun_flare(
-                image_uint8_rgb, 
-                flare_center=sun_uv, 
+                image_uint8_rgb,
+                flare_center=sun_uv,
                 angle=sun_flare_line_angle,
-                no_of_flare_circles = no_of_flare_circles,
+                no_of_flare_circles=no_of_flare_circles,
                 src_radius=sun_radius,
                 src_color=src_color
-                )
-        except:
-            pass
+            )
+        except Exception as e:
+            print(f"Error adding sun flare: {e}")
 
         flare_image_rgb_uint8 = flare_image_rgb.copy().astype(np.uint8)
         
-        #################################################################
-        # split  image  and  point
-        #################################################################
-        temp_dict_trans_information['sun_sim'] = {}
-        temp_dict_trans_information['sun_sim']['mainflare_mask'] = mainflare_mask
-        temp_dict_trans_information['sun_sim']['sun_uv'] = sun_uv
-
+        # 如果需要显示或保存图像
         if watch_img:
-            flare_image_save = torch.from_numpy(flare_image_rgb).permute(2,0,1).float() /255.
-            temp_dict_trans_information['sun_sim']['flare_image_save'] = flare_image_save
+            flare_image_save = torch.from_numpy(flare_image_rgb).permute(2, 0, 1).float() / 255.
+            temp_dict_trans_information['sun_sim'] = {
+                'flare_image_save': flare_image_save,
+                'mainflare_mask': mainflare_mask,
+                'sun_uv': sun_uv
+            }
 
         return flare_image_rgb_uint8
 

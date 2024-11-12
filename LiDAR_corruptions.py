@@ -7,7 +7,6 @@ import numpy as np
 import struct
 import math
 from numpy import random
-import distortion
 
 
 # Weather Corruptions

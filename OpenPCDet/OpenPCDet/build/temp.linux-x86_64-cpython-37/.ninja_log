@@ -1,0 +1,16 @@
+# ninja log v5
+1	948	1730732432385960875	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/iou3d_nms/src/iou3d_nms_kernel.o	b2828ad2de780445
+1	11818	1730732443246272264	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/iou3d_nms/src/iou3d_cpu.o	e0c637664607d28d
+1	12005	1730732443430277539	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/iou3d_nms/src/iou3d_nms.o	1d5d243361102998
+1	13410	1730732444834317792	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/iou3d_nms/src/iou3d_nms_api.o	db38fe48e57f645d
+3	501	1730732445702342678	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/roiaware_pool3d/src/roiaware_pool3d_kernel.o	789aca35b67901cc
+3	13112	1730732458302703885	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/roiaware_pool3d/src/roiaware_pool3d.o	e984c706136c8082
+3	405	1730732459054725440	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/roipoint_pool3d/src/roipoint_pool3d_kernel.o	b2027ae84dcc6bda
+2	13145	1730732471787090364	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/roipoint_pool3d/src/roipoint_pool3d.o	cab39ce0a6c06985
+4	14659	1730732486763519526	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/pointnet2_api.o	9a17e703217788a0
+3	21187	1730732493303706913	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/ball_query_gpu.o	6e9384f9045c5e61
+4	21380	1730732493495712414	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/interpolate_gpu.o	205d71c6f047d0fa
+3	21467	1730732493583714935	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/group_points_gpu.o	8242f701bc247176
+4	21607	1730732493719718831	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/sampling_gpu.o	2934c82d879659a8
+4	21728	1730732493843722385	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/vector_pool_gpu.o	a316d3ba82eff067
+4	21877	1730732493987726510	/home/yifannus2023/3D_Corruptions_AD/OpenPCDet/OpenPCDet/build/temp.linux-x86_64-cpython-37/pcdet/ops/pointnet2/pointnet2_stack/src/voxel_query_gpu.o	de64cb8859de145

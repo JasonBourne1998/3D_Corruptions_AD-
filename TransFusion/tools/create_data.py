@@ -1,10 +1,12 @@
 import argparse
 from os import path as osp
-
+import sys
+import os
+sys.path.append("../TransFusion")
 from tools.data_converter import indoor_converter as indoor
 from tools.data_converter import kitti_converter as kitti
-from tools.data_converter import lyft_converter as lyft_converter
-from tools.data_converter import nuscenes_converter as nuscenes_converter
+# from tools.data_converter import lyft_converter as lyft_converter
+# from tools.data_converter import nuscenes_converter as nuscenes_converter
 from tools.data_converter.create_gt_database import create_groundtruth_database
 
 

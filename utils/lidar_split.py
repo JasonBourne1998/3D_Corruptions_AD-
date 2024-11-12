@@ -51,6 +51,7 @@ def lidar_split(lidar, pts_pose):
 
         start_pose_rec_translation = [
             pose_matrix[0, 0], pose_matrix[0, 1], pose_matrix[0, 2]]
+        print("the shape of pose_matrix is:",pose_matrix.shape)
         start_pose_rec_rotation = [
             pose_matrix[0, 3], pose_matrix[0, 4], pose_matrix[0, 5], pose_matrix[0, 6]]
 
