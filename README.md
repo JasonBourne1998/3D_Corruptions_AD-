@@ -1,6 +1,6 @@
  # Benchmarking Robustness of 3D Object Detection to Common Corruptions in Autonomous Driving
 
-Accepted to CVPR2023. 🔥
+Unofficial Extension implement to the CVPR2023 paper Benchmarking Robustness of 3D Object Detection to Common Corruptions in Autonomous Driving.
 
 ![alt text](./Figure1.png)
 
